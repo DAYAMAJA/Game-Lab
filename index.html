@@ -1,141 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mastery Arcade Lab</title>
+    <title>Mastery Arcade Lab</title>
 
-<style>
+    <style>
+        body {
+            margin: 0;
+            background: #0f172a;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body{
-    margin:0;
-    background:#0f172a;
-    color:white;
-    font-family:Arial,Helvetica,sans-serif;
-}
+        header {
+            background: #1e293b;
+            padding: 20px;
+            text-align: center;
+        }
 
-header{
-    background:#1e293b;
-    padding:20px;
-    text-align:center;
-}
+        h1 {
+            margin: 0;
+        }
 
-h1{
-    margin:0;
-}
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
 
-.card{
-    background:#1e293b;
-    border-radius:12px;
-    padding:20px;
-    margin-bottom:20px;
-}
+        button {
 
-button{
+            background:#2563eb;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
 
-    background:#22c55e;
-    color:white;
-    border:none;
-    padding:15px 35px;
-    font-size:18px;
-    border-radius:10px;
-    cursor:pointer;
+        }
 
-}
+        button:hover {
 
-button:hover{
+background:#1d4ed8;
 
-background:#16a34a;
+        }
 
-}
+        /*=========================================
+  CONTENEDOR RESPONSIVE DEL JUEGO
+=========================================*/
 
-iframe{
+        .game-container {
 
-width:100%;
-height:650px;
-border:none;
-border-radius:12px;
+            display: none;
+            width: 100%;
+            aspect-ratio: 16/9;
+
+            background: #000;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
+        }
+
+        .game-container iframe {
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+        }
+
+        #mensaje {
+
+            font-size: 18px;
+            margin-top: 15px;
+
+        }
+
+        #loader{
+
 display:none;
 
+font-size:20px;
+
+margin-top:20px;
+
+color:#FFD54F;
+
 }
-
-#mensaje{
-
-font-size:18px;
-margin-top:15px;
-
-}
-
-</style>
+    </style>
 
 </head>
 
 <body>
 
-<header>
+    <header>
 
-<h1>🎮 Mastery Arcade Lab</h1>
+        <h1>🎮 Mastery Arcade Lab</h1>
 
-<p>Laboratorio para probar juegos de GameMonetize</p>
+        <p>Laboratorio para probar juegos de GameMonetize</p>
 
-</header>
+    </header>
 
-<div class="container">
+    <div class="container">
 
-<div class="card">
+        <div class="card">
 
-<h2>Candle Run Game</h2>
+            <h2>Candle Run Game</h2>
 
-<p>
+            <p>
 
-Corre, evita obstáculos y mantén viva la llama.
+                Corre, evita obstáculos y mantén viva la llama.
 
-</p>
+            </p>
 
-<button onclick="iniciarJuego()">
+            <button onclick="iniciarJuego()">
 
 Jugar
 
 </button>
 
-<p id="mensaje"></p>
+            <div id="loader">
 
-</div>
+                ⏳ Cargando juego...
 
-<iframe
-id="juego"
-src="https://html5.gamemonetize.co/xrjuqyxnk39uz4ydyjg1de0s45vkk4pr/"
-allowfullscreen>
-</iframe>
+            </div>
 
-</div>
+            <p id="mensaje"></p>
 
-<script>
+        </div>
 
-function iniciarJuego(){
+        <div class="game-container" id="contenedorJuego">
 
-document.getElementById("mensaje").innerHTML="Cargando juego...";
+            <iframe id="juego" src="https://html5.gamemonetize.co/xrjuqyxnk39uz4ydyjg1de0s45vkk4pr/" allowfullscreen>
 
-document.getElementById("juego").style.display="block";
+            </iframe>
 
-window.scrollTo({
+        </div>
 
-top:700,
+    </div>
+
+    <script>
+      function iniciarJuego(){
+
+document.getElementById("loader").style.display="block";
+
+document.getElementById("mensaje").innerHTML="";
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display="none";
+
+document.getElementById("contenedorJuego").style.display="block";
+
+document.getElementById("contenedorJuego").scrollIntoView({
 
 behavior:"smooth"
 
 });
 
-}
+},1000);
 
-</script>
+}
+    </script>
 
 </body>
+
 </html>
