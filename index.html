@@ -2,184 +2,1171 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mastery Arcade Lab</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            margin: 0;
-            background: #0f172a;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<title>Liga Cobre</title>
 
-        header {
-            background: #1e293b;
-            padding: 20px;
-            text-align: center;
-        }
+<!-- =======================
+ESTILOS CSS
+======================= -->
+<style>
 
-        h1 {
-            margin: 0;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
+body{
+    background:#f2f2f2;
+    overflow:hidden;
+}
 
-        .card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+/*=====================================
+ENCABEZADO FIJO
+=====================================*/
 
-        button {
+header{
 
-            background:#2563eb;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 18px;
-            border-radius: 10px;
-            cursor: pointer;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
 
-        }
+    background:#6A1B9A;
+    color:white;
 
-        button:hover {
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-background:#1d4ed8;
+    font-size:30px;
+    font-weight:bold;
 
-        }
-
-        /*=========================================
-  CONTENEDOR RESPONSIVE DEL JUEGO
-=========================================*/
-
-        .game-container {
-
-            display: none;
-            width: 100%;
-            aspect-ratio: 16/9;
-
-            background: #000;
-
-            border-radius: 15px;
-
-            overflow: hidden;
-
-            box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-
-        }
-
-        .game-container iframe {
-
-            width: 100%;
-
-            height: 100%;
-
-            border: none;
-
-        }
-
-        #mensaje {
-
-            font-size: 18px;
-            margin-top: 15px;
-
-        }
-
-        #loader{
-
-display:none;
-
-font-size:20px;
-
-margin-top:20px;
-
-color:#FFD54F;
+    z-index:999;
 
 }
-    </style>
+
+/*=====================================
+CONTENEDOR PRINCIPAL
+Este SI tiene scroll
+=====================================*/
+
+main{
+
+    position:absolute;
+
+    top:70px;
+    bottom:70px;
+
+    left:0;
+    right:0;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+/*=====================================
+TARJETA GENERAL
+=====================================*/
+
+.card{
+
+    max-width:900px;
+    margin:auto;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:0px 5px 15px rgba(0,0,0,.15);
+
+}
+
+/*=====================================
+FOTO
+Cambiar el src posteriormente
+=====================================*/
+
+.photo{
+
+    width:100%;
+    aspect-ratio:3 / 1;
+
+    border-radius:12px;
+    overflow:hidden;
+
+}
+
+.photo img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+background:#000;
+
+    object-position:center center;
+
+}
+
+/*=====================================
+TEXTO
+=====================================*/
+
+.description{
+
+    margin-top:20px;
+
+    font-size:18px;
+
+    line-height:30px;
+
+    color:#444;
+
+}
+
+/*=====================================
+BOTONES
+=====================================*/
+
+.buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+.iconButton{
+
+    flex:1;
+
+    height:70px;
+
+    background:#8E24AA;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    line-height:1.2;
+
+}
+
+.iconButton small{
+
+    font-size:13px;
+
+    font-weight:normal;
+
+    margin-top:3px;
+
+}
+
+.iconButton:hover{
+
+    background:#6A1B9A;
+
+}
+
+
+/*=====================================
+CARRUSEL
+=====================================*/
+
+.carousel{
+
+    margin-top:35px;
+
+}
+
+.carousel h2{
+
+    margin-bottom:15px;
+
+}
+
+.carouselContainer{
+
+    display:flex;
+
+    gap:15px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+}
+
+.carouselContainer img{
+
+    width:250px;
+
+    height:170px;
+
+    border-radius:12px;
+
+    object-fit:cover;
+
+    flex-shrink:0;
+
+}
+
+/*=====================================
+BARRA INFERIOR
+=====================================*/
+
+footer{
+
+    position:fixed;
+
+    bottom:0;
+
+    left:0;
+
+    width:100%;
+
+    height:70px;
+
+    background:#6A1B9A;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+footer a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:32px;
+
+}
+
+/*=====================================
+RECOMPENSA
+=====================================*/
+
+.rewardCard{
+
+    margin-top:40px;
+
+    background:#ffffff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0px 5px 15px rgba(0,0,0,.2);
+
+}
+
+.rewardCard img{
+
+    width:100%;
+
+    max-width:500px;
+
+    border-radius:12px;
+
+    margin:20px auto;
+
+    display:block;
+
+}
+
+.rewardCard h2{
+
+    color:#8E24AA;
+
+}
+
+.rewardCard h3{
+
+    margin:15px 0;
+
+}
+
+.rewardCard p{
+
+    line-height:28px;
+
+}
+
+.rewardCard a{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 35px;
+
+    border-radius:10px;
+
+    background:#8E24AA;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.rewardCard a:hover{
+
+    background:#6A1B9A;
+
+}
+
+body.dark .rewardCard{
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(12px);
+
+}
+
+body.dark .rewardCard h2{
+
+    color:#BB86FC;
+
+}
+
+body.dark .rewardCard p{
+
+    color:white;
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:700px){
+
+.photo{
+
+    aspect-ratio:16/9;
+    height:auto;
+
+}
+
+}
+
+
+
+/*==========================
+HEADER
+==========================*/
+
+header{
+
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:70px;
+
+    background:#6A1B9A;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 20px;
+
+    color:white;
+
+    z-index:999;
+
+}
+
+header h1{
+
+    font-size:28px;
+
+}
+
+/*==========================
+SWITCH
+==========================*/
+
+.switch{
+
+    position:relative;
+
+    display:inline-block;
+
+    width:55px;
+
+    height:30px;
+
+}
+
+.switch input{
+
+    display:none;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    cursor:pointer;
+
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+
+    background:#ccc;
+
+    border-radius:30px;
+
+    transition:.4s;
+
+}
+
+.slider:before{
+
+    position:absolute;
+
+    content:"";
+
+    width:24px;
+
+    height:24px;
+
+    left:3px;
+
+    bottom:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transition:.4s;
+
+}
+
+input:checked + .slider{
+
+    background:#222;
+
+}
+
+input:checked + .slider:before{
+
+    transform:translateX(25px);
+
+}
+
+/*=====================================
+MODO OSCURO
+=====================================*/
+
+body.dark{
+
+    background-image:url("https://i.ibb.co/nqWykMTg/Chat-GPT-Image-4-mar-2026-10-17-06-p-m.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    background-attachment:fixed;
+
+    color:white;
+
+}
+
+/* Oscurece ligeramente el contenido para mejorar la lectura */
+
+body.dark .card{
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(12px);
+
+}
+
+body.dark .description{
+
+    color:#eeeeee;
+
+}
+
+body.dark header{
+
+    background:#2E0854;
+
+}
+
+body.dark footer{
+
+    background:#2E0854;
+
+}
+
+body.dark .photo{
+
+    border:2px solid #BB86FC;
+
+}
+
+body.dark .iconButton{
+
+    background:#7B1FA2;
+
+}
+
+body.dark .iconButton:hover{
+
+    background:#9C27B0;
+
+}
+
+body.dark{
+
+    background-image:url("https://i.ibb.co/nqWykMTg/Chat-GPT-Image-4-mar-2026-10-17-06-p-m.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+}
+
+/*=====================================
+TARJETA MI COSMO
+======================================*/
+
+.playerCardOverlay{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.75);
+
+    display:none;
+
+    justify-content:center;
+
+  align-items:center;
+
+    z-index:9999;
+
+}
+
+.playerCard{
+
+    position:relative;
+
+    width:280px;      /* ancho de la tarjeta */
+    max-width:90%;
+
+    animation:subir .35s ease;
+
+}
+
+.playerCard img{
+
+    width:100%;
+    display:block;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+
+}
+
+#closePlayerCard{
+
+    position:absolute;
+
+    top:12px;
+
+    right:12px;
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#000;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+}
+
+@keyframes subir{
+
+from{
+
+transform:translateY(100%);
+
+}
+
+to{
+
+transform:translateY(0);
+
+}
+
+}
+
+/*=====================================
+VIDEO EMERGENTE
+=====================================*/
+
+.videoModal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.85);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+.videoModal video{
+
+    width:90%;
+
+    max-width:450px;
+
+    border-radius:15px;
+
+}
+
+</style>
 
 </head>
 
-<body>
+<body class="dark">
 
-    <header>
+<!-- ===================================================
+ENCABEZADO
+Este permanece fijo siempre
+=================================================== -->
 
-        <h1>🎮 Mastery Arcade Lab</h1>
+<!--=====================================
+ENCABEZADO FIJO
+======================================-->
 
-        <p>Laboratorio para probar juegos de GameMonetize</p>
+<header>
 
-    </header>
+    <h1>Liga Cobre</h1>
 
-    <div class="container">
+    <!-- Switch Modo Oscuro -->
+    <label class="switch">
 
-        <div class="card">
+        <input type="checkbox" id="darkMode">
 
-            <h2>Candle Run Game</h2>
+        <span class="slider"></span>
 
-            <p>
+    </label>
 
-                Corre, evita obstáculos y mantén viva la llama.
+</header>
 
-            </p>
+<!-- ===================================================
+CONTENIDO
+Todo este contenido se mueve con scroll
+=================================================== -->
 
-            <button onclick="iniciarJuego()">
+<main>
 
-Jugar
+<div class="card">
 
+<!-- ===================================================
+IMAGEN
+Cambia el enlace de la imagen cuando quieras
+=================================================== -->
+
+<div class="photo">
+
+<img src="https://i.ibb.co/9kk6zkPX/Chat-GPT-Image-28-jun-2026-10-16-59-p-m.png" alt="Imagen Principal">
+
+</div>
+
+<!-- ===================================================
+DESCRIPCIÓN
+Aquí colocarás el texto que desees
+=================================================== -->
+
+<div class="description">
+
+Aquí aparecerá la descripción del curso, torneo, juego o cualquier información que quieras colocar posteriormente.
+
+</div>
+
+<!-- ===================================================
+BOTONES
+Cada botón puede abrir un enlace diferente
+=================================================== -->
+
+<div class="buttons">
+
+<button id="btnCosmos" class="iconButton">
+    Sube tu Cosmos<br>
+    <small>+10 PTS</small>
 </button>
 
-            <div id="loader">
+<a href="#" class="iconButton">🏆</a>
 
-                ⏳ Cargando juego...
+<a href="#" class="iconButton">📚</a>
 
-            </div>
+</div>
 
-            <p id="mensaje"></p>
 
-        </div>
+<!--=====================================
+RECOMPENSA DESBLOQUEADA
+======================================-->
 
-        <div class="game-container" id="contenedorJuego">
+<div class="rewardCard">
 
-            <iframe id="juego" src="https://html5.gamemonetize.co/xrjuqyxnk39uz4ydyjg1de0s45vkk4pr/" allowfullscreen>
+<h2>🎁 Recompensa desbloqueada</h2>
 
-            </iframe>
+<img id="gameImage" src="" alt="Juego">
 
-        </div>
+<h3 id="gameTitle"></h3>
+
+<p>
+
+Has completado tu lección de inglés.
+
+Disfruta tu recompensa y continúa aprendiendo para desbloquear muchos más juegos.
+
+</p>
+
+<a id="playButton" href="#" class="playButton">
+
+🎮 JUGAR AHORA
+
+</a>
+
+</div>
+
+<!-- ===================================================
+GALERÍA DE JUEGOS
+Se llena automáticamente desde JavaScript
+=================================================== -->
+
+<div class="carousel">
+
+<h2>🎮 Más juegos</h2>
+
+<p style="margin-bottom:15px; color:#888;">
+
+Selecciona un juego para actualizar la recompensa.
+
+</p>
+
+<div class="carouselContainer" id="gallery">
+
+</div>
+
+</div>
+
+<!--=====================================
+NUEVO JUEGO DESBLOQUEADO
+======================================-->
+
+<div id="bonusCarousel" class="carousel" style="display:none;">
+
+    <h2>⭐ Nuevo juego desbloqueado</h2>
+
+    <p style="margin-bottom:15px;color:#888;">
+        Has aumentado tu Cosmos y desbloqueaste nuevos juegos.
+    </p>
+
+    <div class="carouselContainer" id="bonusGallery">
 
     </div>
 
-    <script>
-      function iniciarJuego(){
+</div>
 
-document.getElementById("loader").style.display="block";
+<!-- Cierra la tarjeta -->
+</div>
 
-document.getElementById("mensaje").innerHTML="";
 
-setTimeout(function(){
+<!--=========================
+VIDEO RECOMPENSA
+==========================-->
 
-document.getElementById("loader").style.display="none";
+<div id="videoModal" class="videoModal">
 
-document.getElementById("contenedorJuego").style.display="block";
+    <video
+    id="rewardVideo"
+    controls
+    controlsList="nodownload">
 
-document.getElementById("contenedorJuego").scrollIntoView({
+        <source src="https://firebasestorage.googleapis.com/v0/b/app-libra-4746f.firebasestorage.app/o/VideosAppM1%2F1-Bienvenida.mp4?alt=media&token=b31bd9ae-bfd8-4a6f-b5d4-4cadd8bea826"
+        type="video/mp4">
 
-behavior:"smooth"
+    </video>
+
+</div>
+
+
+
+
+<!-- Cierra el main -->
+</main>
+
+
+
+
+<!--=====================================
+TARJETA MI COSMO
+======================================-->
+
+<div id="playerCard" class="playerCardOverlay">
+
+    <div class="playerCard">
+
+        <button id="closePlayerCard">✕</button>
+
+        <img
+        src="https://i.ibb.co/dsfv9Lhv/Chat-GPT-Image-29-jun-2026-12-24-16-a-m.png"
+        alt="Caballero Cósmico de Cobre">
+
+    </div>
+
+</div>
+
+<!-- ===================================================
+BARRA INFERIOR
+=================================================== -->
+
+
+<footer>
+
+<!-- Home -->
+<a href="#">🏠</a>
+
+<!-- Ruta o Path -->
+<a href="#" id="openPlayer">
+    <img src="https://i.ibb.co/CKSMML89/icono-de-cobre.png">
+</a>
+
+<!-- Menú -->
+<a href="#">☰</a>
+
+</footer>
+
+<script>
+
+//=====================================
+// LISTA DE JUEGOS
+//=====================================
+
+const juegos = [
+
+{
+    title:"Super Mario Wonder",
+    thumb:"https://img.gamemonetize.com/zk99zkldgfzm89l2g56hhf5rfzitm9x8/512x384.jpg",
+    url:"https://html5.gamemonetize.co/zk99zkldgfzm89l2g56hhf5rfzitm9x8/"
+},
+
+{
+    title:"Hill Climb Racings 2",
+    thumb:"https://img.gamemonetize.com/1vxk8rfmkpin0l0ex7atiuftp6l3mu6p/512x384.jpg",
+    url:"https://html5.gamemonetize.co/1vxk8rfmkpin0l0ex7atiuftp6l3mu6p/"
+},
+
+{
+    title:"Save Water",
+    thumb:"https://img.gamemonetize.com/uq5a0s44ju5uuztdnr4639omzsxiadcn/512x384.jpg",
+    url:"https://html5.gamemonetize.co/uq5a0s44ju5uuztdnr4639omzsxiadcn/"
+}
+
+];
+
+//=====================================
+// JUEGOS DESBLOQUEADOS
+//=====================================
+
+const bonusGames=[
+
+{
+title:"Real Estate Royal",
+thumb:"https://img.gamemonetize.com/cin1x7c563sycwcvvgl4h19vytnxf0es/512x384.jpg",
+url:"https://html5.gamemonetize.co/cin1x7c563sycwcvvgl4h19vytnxf0es/"
+},
+
+{
+title:"Juego 2",
+thumb:"https://img.gamemonetize.com/yyyyyyyy/512x384.jpg",
+url:"https://html5.gamemonetize.co/yyyyyyyy/"
+},
+
+{
+title:"Juego 3",
+thumb:"https://img.gamemonetize.com/zzzzzzzz/512x384.jpg",
+url:"https://html5.gamemonetize.co/zzzzzzzz/"
+}
+
+];
+
+//=====================================
+// ACTUALIZA LA TARJETA DE RECOMPENSA
+//=====================================
+
+function mostrarJuego(indice){
+
+    document.getElementById("gameImage").src = juegos[indice].thumb;
+
+    document.getElementById("gameTitle").textContent = juegos[indice].title;
+
+    document.getElementById("playButton").href = juegos[indice].url;
+
+}
+
+//=====================================
+// CREA AUTOMÁTICAMENTE LA GALERÍA
+//=====================================
+
+const gallery = document.getElementById("gallery");
+
+juegos.forEach((juego, indice)=>{
+
+    const img = document.createElement("img");
+
+    img.src = juego.thumb;
+
+    img.alt = juego.title;
+
+    img.title = juego.title;
+
+    img.style.cursor = "pointer";
+
+    img.onclick = ()=>mostrarJuego(indice);
+
+    gallery.appendChild(img);
 
 });
 
-},1000);
+// Mostrar el primer juego al abrir la página
+mostrarJuego(0);
+
+
+//=====================================
+// CREA EL CARRUSEL DESBLOQUEADO
+//=====================================
+
+const bonusGallery=document.getElementById("bonusGallery");
+
+bonusGames.forEach((juego,indice)=>{
+
+    const img=document.createElement("img");
+
+    img.src=juego.thumb;
+
+    img.alt=juego.title;
+
+    img.title=juego.title;
+
+    img.style.cursor="pointer";
+
+    img.onclick=function(){
+
+        document.getElementById("gameImage").src=juego.thumb;
+
+        document.getElementById("gameTitle").textContent=juego.title;
+
+        document.getElementById("playButton").href=juego.url;
+
+    };
+
+    bonusGallery.appendChild(img);
+
+});
+
+//=====================================
+// MODO OSCURO
+//=====================================
+
+const darkMode = document.getElementById("darkMode");
+
+darkMode.checked = document.body.classList.contains("dark");
+
+darkMode.addEventListener("change", function(){
+
+    document.body.classList.toggle("dark", this.checked);
+
+});
+
+const openPlayer=document.getElementById("openPlayer");
+
+const playerCard=document.getElementById("playerCard");
+
+const closePlayerCard=document.getElementById("closePlayerCard");
+
+openPlayer.onclick=function(e){
+
+    e.preventDefault();
+
+    playerCard.style.display="flex";
 
 }
-    </script>
 
+closePlayerCard.onclick=function(){
+
+    playerCard.style.display="none";
+
+}
+
+playerCard.onclick=function(e){
+
+    if(e.target===playerCard){
+
+        playerCard.style.display="none";
+
+    }
+
+}
+
+//=====================================
+// VIDEO +10 PUNTOS
+//=====================================
+
+const btnCosmos = document.getElementById("btnCosmos");
+
+const videoModal = document.getElementById("videoModal");
+
+const rewardVideo = document.getElementById("rewardVideo");
+
+//=====================================
+// PROGRESO LOCAL
+//=====================================
+
+let progresoCosmos = localStorage.getItem("cosmos10");
+
+//=====================================
+// CARGAR PROGRESO
+//=====================================
+
+if(progresoCosmos==="SI"){
+
+    btnCosmos.innerHTML="✅ Sumaste<br><small>10 PTS</small>";
+
+    btnCosmos.style.background="#2E7D32";
+
+    btnCosmos.disabled=true;
+
+    document.getElementById("bonusCarousel").style.display="block";
+
+}
+
+btnCosmos.onclick=function(){
+
+    videoModal.style.display="flex";
+
+    rewardVideo.currentTime=0;
+
+    rewardVideo.play();
+
+}
+
+
+
+// Cuando termina el video
+
+rewardVideo.onended=function(){
+
+    videoModal.style.display="none";
+
+  btnCosmos.innerHTML="✅ Sumaste<br><small>10 PTS</small>";
+
+btnCosmos.style.background="#2E7D32";
+
+btnCosmos.disabled = true;
+
+localStorage.setItem("cosmos10","SI");
+
+    // Mostrar el nuevo carrusel
+
+document.getElementById("bonusCarousel").style.display="block";
+
+// Bajar suavemente hasta él
+
+document.getElementById("bonusCarousel").scrollIntoView({
+
+    behavior:"smooth"
+
+});
+
+
+
+}
+
+</script>
 </body>
 
 </html>
